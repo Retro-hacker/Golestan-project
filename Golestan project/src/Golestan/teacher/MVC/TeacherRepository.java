@@ -2,10 +2,9 @@ package Golestan.teacher.MVC;
 
 import Golestan.Student.MVC.StudentEntity;
 
-import java.security.spec.ECField;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeacherRepository implements AutoCloseable{
     private Connection connection;
@@ -33,6 +32,17 @@ public class TeacherRepository implements AutoCloseable{
 
     public void rollback() throws Exception{
        connection.rollback();
+    }
+    public boolean enter (long username, String password) throws Exception {
+        ResultSet resultSet = preparedStatement.executeQuery("select * from teachers where username = " + username);
+        while (resultSet.next()) {
+            resultSet.getLong("username");
+            resultSet.getString("password");
+        }
+        if (username == resultSet.getLong("username") && password == resultSet.getString("password"))
+            return true;
+        else
+            return false;
     }
 
 

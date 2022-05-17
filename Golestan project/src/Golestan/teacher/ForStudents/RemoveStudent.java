@@ -5,5 +5,7 @@ import Golestan.teacher.MVC.TeacherRepository;
 import java.util.Scanner;
 
 public class RemoveStudent {
+        public void Remove(){
 
+        }
 }

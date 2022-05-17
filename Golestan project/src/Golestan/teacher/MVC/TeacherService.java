@@ -8,7 +8,7 @@ public class TeacherService {
         return teacherService;
     }
 
-    public void save (TeacherEntity teacherEntity) throws Exception{
+    public void salary (TeacherEntity teacherEntity) throws Exception{
         try (TeacherRepository teacherRepository = new TeacherRepository()) {
             teacherEntity.setSalary(teacherEntity.getSalary() - (teacherEntity.getSalary() * 10 / 100 ));
         }
