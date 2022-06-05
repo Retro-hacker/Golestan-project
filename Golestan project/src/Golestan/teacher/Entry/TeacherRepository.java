@@ -3,6 +3,8 @@ package Golestan.teacher.Entry;
 import Golestan.Student.MVC.StudentEntity;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeacherRepository implements AutoCloseable{
     private Connection connection;
@@ -25,8 +27,29 @@ public class TeacherRepository implements AutoCloseable{
     }
 
     public String enroll(String lesson) throws Exception{
-        ResultSet list = preparedStatement.executeQuery("Select * from students where lesson =" + lesson);
-        return String.valueOf(list);
+        preparedStatement = connection.prepareStatement("select name from students where lesson = ?");
+        preparedStatement.setString(1,lesson);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return lesson;
+    }
+
+    public List<TeacherEntity> login() throws Exception{
+        TeacherEntity teacherEntity = new TeacherEntity();
+
+        preparedStatement = connection.prepareStatement("select password from teachers where username = ?");
+
+        preparedStatement.setLong(1,teacherEntity.getUser());
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        List<TeacherEntity> entityList = new ArrayList<>();
+
+        while (resultSet.next()){
+            teacherEntity.setUser(resultSet.getLong("username"));
+            teacherEntity.setName(resultSet.getString("name"));
+            entityList.add(teacherEntity);
+        }
+        return entityList;
     }
 
     public void commit() throws Exception{

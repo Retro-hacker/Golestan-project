@@ -21,6 +21,8 @@ public class TeacherEntity {
         this.id = id;
         return this;
     }
+    public long getUser() {return user;}
+
 
     public TeacherEntity setUser(long user) {
         this.user = user;
