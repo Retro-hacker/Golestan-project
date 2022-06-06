@@ -9,6 +9,7 @@ public class SalaryService {
     private static SalaryService salaryService = new SalaryService();
     public static SalaryService getInstance() {return salaryService;}
 
+
     public List<SalaryEntity> salary () throws Exception{
         List<SalaryEntity> salary;
         try (SalaryRepository salaryRepository = new SalaryRepository()) {

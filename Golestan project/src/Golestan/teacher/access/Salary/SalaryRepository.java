@@ -19,13 +19,11 @@ public class SalaryRepository implements AutoCloseable{
         connection.setAutoCommit(false);
     }
 
+
+
     public List<SalaryEntity> ShowSalary() throws Exception{
 
-        preparedStatement = connection.prepareStatement("select salary from teachers where username = ?");
-
-        SalaryEntity salaryEntity = new SalaryEntity();
-
-        preparedStatement.setLong(1,salaryEntity.getUsername());
+        preparedStatement = connection.prepareStatement("select username, lesson, salary from teachers");
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -33,7 +31,9 @@ public class SalaryRepository implements AutoCloseable{
 
         while (resultSet.next()){
             SalaryEntity salary = new SalaryEntity();
-            salaryEntity.setSalary(resultSet.getInt("salary"));
+            salary.setUsername(resultSet.getLong("username"));
+            salary.setLesson(resultSet.getString("lesson"));
+            salary.setSalary(resultSet.getInt("salary"));
             list.add(salary);
         }
         return list;

@@ -10,11 +10,6 @@ public class TeacherService {
         return teacherService;
     }
 
-    public void UserEntry(long username) throws Exception{
-        TeacherRepository teacherRepository = new TeacherRepository();
-        TeacherEntity teacherEntity = new TeacherEntity();
-        teacherEntity.setUser(username);
-    }
 
     public List<TeacherEntity> login() throws Exception{
         List<TeacherEntity> entities;

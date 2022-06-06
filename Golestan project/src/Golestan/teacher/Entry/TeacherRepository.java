@@ -1,6 +1,7 @@
 package Golestan.teacher.Entry;
 
 import Golestan.Student.MVC.StudentEntity;
+import Golestan.teacher.access.Salary.SalaryEntity;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,18 +35,17 @@ public class TeacherRepository implements AutoCloseable{
     }
 
     public List<TeacherEntity> login() throws Exception{
-        TeacherEntity teacherEntity = new TeacherEntity();
 
-        preparedStatement = connection.prepareStatement("select password from teachers where username = ?");
-
-        preparedStatement.setLong(1,teacherEntity.getUser());
+        preparedStatement = connection.prepareStatement("select username , password , name from teachers");
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
         List<TeacherEntity> entityList = new ArrayList<>();
 
         while (resultSet.next()){
+            TeacherEntity teacherEntity = new TeacherEntity();
             teacherEntity.setUser(resultSet.getLong("username"));
+            teacherEntity.setPassword(resultSet.getString("password"));
             teacherEntity.setName(resultSet.getString("name"));
             entityList.add(teacherEntity);
         }

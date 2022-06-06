@@ -5,16 +5,17 @@ import java.util.Scanner;
 
 public class Salary {
     public void salary(){
-        SalaryEntity salaryEntity = new SalaryEntity();
-        System.out.println("لطفا نام کاربری را وارد کنید:");
+        System.out.println("لطفا نام کاربری و واحدی که ارائه میدهید را وارد کنید را وارد کنید:");
         Scanner scanner = new Scanner(System.in);
         String user = scanner.nextLine();
         long username = Long.parseLong(user);
-        salaryEntity.setUsername(username);
+        String lesson = scanner.nextLine();
+
         try{
             List<SalaryEntity> salary = SalaryService.getInstance().salary();
             for (SalaryEntity entity : salary){
-                System.out.println("حقوق شما در این ترم " + entity.getSalary() + " تومان است.");
+                if (username == entity.getUsername() && lesson.equals(entity.getLesson()))
+                    System.out.println("حقوق شما در این ترم " + entity.getSalary() + " تومان است.");
             }
         }
         catch (Exception e){
