@@ -42,7 +42,7 @@ public class Teacher {
             for (TeacherEntity login : entryList){
                 if (user == login.getUser() && password.equals(login.getPassword())) {
                     System.out.println("استاد "+ login.getName() +" به پنل کاربری خود خوش آمدید.");
-                    System.out.println("جهت مشاهده لیست دروس عدد 1 ، وارد کردن نمره دانشجو عدد 2 ، مشاهده حقوق جاری عدد 3 ، حذف دانشجو به علت غیبت عدد 4 ، مشاهده رشته دانشجویان، تعداد و ورودی به ازاری هر درس عدد 5 ، مشاهده ارزشیابی دانشجویان عدد 6 را وارد کنید:");
+                    System.out.println("جهت مشاهده لیست دروس عدد 1 ، وارد کردن نمره دانشجو عدد 2 ، مشاهده حقوق جاری عدد 3 ، حذف دانشجو به علت غیبت عدد 4 ، مشاهده رشته دانشجویان، تعداد و ورودی به ازای هر درس عدد 5 ، مشاهده ارزشیابی دانشجویان عدد 6 را وارد کنید:");
                     String Choice = scanner.nextLine();
                     int choice = Integer.parseInt(Choice);
                     switch (choice) {
